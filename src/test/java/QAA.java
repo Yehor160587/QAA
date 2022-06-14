@@ -17,16 +17,20 @@ public class QAA {
         driver.get("http://localhost/%D0%9D%D0%BE%D0%B2%D0%B0%D1%8F%20%D0%BF%D0%B0%D0%BF%D0%BA%D0%B0/index.html");
         WebElement movieSeach = driver.findElement(By.id("film_name"));
         WebElement searchBtn = driver.findElement(By.id("get_api_res_btn"));
-       movieSeach.sendKeys("Titanic");
+       movieSeach.sendKeys("Die Hard");
        searchBtn.click();
-        String expectedDirector = "James Cameron";
-        String expectedYear = "1997";
+        String expectedDirector = "John McTiernan";
+        String expectedYear = "1988";
+        String expectedTitle = "Die Hard";
        WebElement directorName = new WebDriverWait(driver, Duration.ofSeconds(30)).until(elementToBeClickable(By.id("api_director")));
         System.out.println("Director's Name: " + directorName.getText().substring(10));
         Assert.assertEquals(directorName.getText().substring(10), expectedDirector);
-        WebElement Yearofrelease = new WebDriverWait(driver, Duration.ofSeconds(25)).until(elementToBeClickable(By.id("api_year")));
-        System.out.println("Year of release: " + Yearofrelease.getText().substring(5));
-        Assert.assertEquals(Yearofrelease.getText().substring(5), expectedYear);
+        WebElement Yearofrelease = new WebDriverWait(driver, Duration.ofSeconds(30)).until(elementToBeClickable(By.id("api_year")));
+        System.out.println("Year of release: " + Yearofrelease.getText().substring(6));
+        Assert.assertEquals(Yearofrelease.getText().substring(6), expectedYear);
+        WebElement Titlefilm = new WebDriverWait(driver, Duration.ofSeconds(30)).until(elementToBeClickable(By.id("api_title")));
+        System.out.println("Title Film: " + Titlefilm.getText().substring(7));
+        Assert.assertEquals(Titlefilm.getText().substring(7), expectedTitle);
 
     }
 }
